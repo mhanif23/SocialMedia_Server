@@ -17,4 +17,6 @@ gem 'rubocop', '~> 1.19', require: false
 
 gem 'mysql2', '~> 0.5.3'
 
+gem "sinatra-contrib"
+
 gem 'json', '~> 2.5.1'
