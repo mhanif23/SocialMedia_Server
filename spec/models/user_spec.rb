@@ -50,18 +50,32 @@ describe User do
       end
     end
     context "give fail argument" do 
-      it "should return true" do 
+      it "should return false" do 
       @user_fail = User.new(
         username: "Rizal"
       )
         expect(@user_fail.valid?).to eq(false)
       end
-      it "should return true" do 
+      it "should return false" do 
         @user_fail = User.new(
           email: "Rizal123@gmail.com"
         )
           expect(@user_fail.valid?).to eq(false)
+      end
+      it "should return false" do 
+        @user_fail = User.new(
+          username: "Rizal",
+          email: ""
+        )
+          expect(@user_fail.valid?).to eq(false)
         end
+        it "should return false" do 
+          @user_fail = User.new(
+            email: "Rizal123@gmail.com",
+            username: ""
+          )
+            expect(@user_fail.valid?).to eq(false)
+          end
     end
   end
 end
