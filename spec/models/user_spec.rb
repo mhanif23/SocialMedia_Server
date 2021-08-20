@@ -23,6 +23,9 @@ describe User do
       it 'should give email' do
         expect(@user.email).to eq(@user_data[:email])
       end
+      it 'should give empty bio' do 
+        expect(@user.bio).to eq("")
+      end
     end
   end
 end
