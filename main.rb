@@ -1,41 +1,44 @@
-  
-require "sinatra"
-require "sinatra/json"
-require "json"
+require 'sinatra'
+require 'sinatra/json'
+require 'json'
 
 before do
   content_type :json
 end
 
-get "/test" do
+get '/test' do
   status 200
-  json({
-    status: 200,
-    message: "Success!",
-    data: {}
-  })
+  json(
+    {
+      status: 200,
+      message: 'Success!',
+      data: {}
+    }
+  )
 end
 
-post "/test" do
+post '/test' do
   request_payload = JSON.parse request.body.read
   puts request_payload
   status 200
-  json({
-    status: 200,
-    message: "Success!",
-    data: request_payload
-  })
+  json(
+    {
+      status: 200,
+      message: 'Success!',
+      data: request_payload
+    }
+  )
 end
 
-
-
-post "/file" do
+post '/file' do
   tmpfile = params[:file]
   puts tmpfile
   status 200
-  json({
-    status: 200,
-    message: "Success!",
-    data: tmpfile
-  })
+  json(
+    {
+      status: 200,
+      message: 'Success!',
+      data: tmpfile
+    }
+  )
 end
