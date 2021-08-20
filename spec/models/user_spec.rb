@@ -1,9 +1,5 @@
 require_relative "../../models/user.rb"
 describe User do
-  before :each do
-    @client = double
-    allow(Mysql2::Client).to receive(:new).and_return(@client)
-  end
   
   describe "initialize" do
     context "give arguments" do 
@@ -91,11 +87,14 @@ describe User do
           email: "rizal123@gmail.com",
           bio: "This is bio"
         }
-      @query = "INSERT INTO users (username, email, bio) VALUES ('#{@user_data[:username]}', '#{@user_data[:email]}', '#{@user_data[:bio]}')"
+      @client = double
+      allow(Mysql2::Client).to receive(:new).and_return(@client)
+      @query = "INSERT INTO Users (username, email, bio) VALUES ('#{@user_data[:username]}', '#{@user_data[:email]}', '#{@user_data[:bio]}')"
       allow(@client).to receive(:query).with(@query)
     end
     it 'instance execute the query and save data' do
       expect(@client).to receive(:query).with(@query)
+      @user.save()
     end
   end
 end

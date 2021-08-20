@@ -17,6 +17,9 @@ class User
   end
   
   def save 
-  
+    client = create_db_client
+    client.query(
+      "INSERT INTO Users (username, email, bio) VALUES ('#{@username}', '#{@email}', '#{@bio}')"
+    )
   end
 end
