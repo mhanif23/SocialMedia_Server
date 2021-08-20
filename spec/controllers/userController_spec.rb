@@ -87,10 +87,8 @@ describe UserController do
 
     allow(@user).to receive(:make_hash).and_return(user_object)
 
-    params = @user_data["username"]
-
     controller = UserController.new
-    response = controller.show_by_username(params)
+    response = controller.find_user(@user_data)
     expect(response).to eq(expected_response)
   end
 end
