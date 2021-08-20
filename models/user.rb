@@ -52,4 +52,8 @@ class User
     end
     user
   end
+
+  def update
+
+  end
 end

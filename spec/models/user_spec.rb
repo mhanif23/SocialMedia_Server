@@ -146,11 +146,31 @@ describe User do
       @client = double
       allow(Mysql2::Client).to receive(:new).and_return(@client)
       allow(@client).to receive(:query).with(@query).and_return(response)
-      allow(@client).to receive(:close)
     end
     it 'should execute queries' do
       expect(@client).to receive(:query).with(@query)
       User::find_user(@user_data[:username])
+    end
+  end
+
+  describe "update bio" do
+    before :each do
+      @user_data = {
+            id: 1,
+            username: "Rizal",
+            email: "rizal123@gmail.com",
+            bio: "This is bio"
+          }
+      @query = "UPDATE Users set bio = '#{@user_data[:bio]}' where username = #{@user_data[:username]}"
+      @client = double
+      allow(Mysql2::Client).to receive(:new).and_return(@client)
+      allow(@client).to receive(:query).with(@query)
+    end
+
+    it "should update bio" do
+      expect(@client).to receive(:query).with(@query)
+      user = User.new(@user_data)
+      user.update()
     end
   end
 end
