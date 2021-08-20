@@ -16,10 +16,17 @@ class User
     true
   end
   
-  def save 
+  def save
+    return false unless self.valid? 
+    # return false unless self.user_exist?
+
     client = create_db_client
     client.query(
       "INSERT INTO Users (username, email, bio) VALUES ('#{@username}', '#{@email}', '#{@bio}')"
     )
+  end
+
+  def exist?
+
   end
 end

@@ -96,5 +96,34 @@ describe User do
       expect(@client).to receive(:query).with(@query)
       @user.save()
     end
+    describe "Check Exist Databse" do
+      before :each do
+        @user = User.new(
+          username: "Rizal",
+          email: "rizal123@gmail.com",
+          bio: "This is bio"
+        )
+        @user_data = {
+            username: "Rizal",
+            email: "rizal123@gmail.com",
+            bio: "This is bio"
+          }
+        @client = double
+        allow(Mysql2::Client).to receive(:new).and_return(@client)
+        @query = "SELECT COUNT(*) as count FROM Users WHERE username='#{@user_data[:username]}'"
+      end
+      it 'instance execute the query return true' do
+        query_result = double
+        allow(query_result).to receive(:first).and_return({"count" => 1})
+        allow(@client).to receive(:query).with(@query).and_return(query_result)
+        expect(@user.exist?).to eq(true)
+      end
+      it 'instance execute the query return false' do
+        query_result = double
+        allow(query_result).to receive(:first).and_return({"count" => 0})
+        allow(@client).to receive(:query).with(@query).and_return(query_result)
+        expect(@user.exist?).to eq(false)
+      end
+    end
   end
 end
