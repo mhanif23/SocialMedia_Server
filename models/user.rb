@@ -34,4 +34,8 @@ class User
     return true if rows.first()["count"] > 0
     false
   end
+
+  def self.find_user(username)
+   
+  end
 end
