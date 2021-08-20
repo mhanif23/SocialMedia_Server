@@ -8,6 +8,7 @@ class User
     @username = params[:username]
     @email = params[:email]
     @bio = params[:bio] ? params[:bio] : ""
+    @id = params[:id] ? params[:id] : ""
   end
 
   def valid?
@@ -18,7 +19,6 @@ class User
   
   def save
     return false unless self.valid? 
-    # return false unless self.user_exist?
 
     client = create_db_client
     client.query(
@@ -57,5 +57,9 @@ class User
     return false unless valid?
     client = create_db_client
     client.query("UPDATE Users set bio = '#{@bio}' where username = #{@username}")
+  end
+
+  def make_hash 
+   
   end
 end

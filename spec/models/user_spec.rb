@@ -173,4 +173,17 @@ describe User do
       user.update()
     end
   end
+
+  describe "make intance " do
+    it "return hash" do
+      params = {
+          :id => 1,
+          :username => 'Rizal',
+          :email => 'Rizal@gmail.com',
+          :bio => 'Test Bioo'
+        }
+      user = User.new(params)
+      expect(user.make_hash).to eq(params)
+    end
+  end
 end
