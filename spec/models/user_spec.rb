@@ -78,4 +78,24 @@ describe User do
           end
     end
   end
+
+  describe "save data to database" do
+    before :each do
+      @user = User.new(
+        username: "Rizal",
+        email: "rizal123@gmail.com",
+        bio: "This is bio"
+      )
+      @user_data = {
+          username: "Rizal",
+          email: "rizal123@gmail.com",
+          bio: "This is bio"
+        }
+      @query = "INSERT INTO users (username, email, bio) VALUES ('#{@user_data[:username]}', '#{@user_data[:email]}', '#{@user_data[:bio]}')"
+      allow(@client).to receive(:query).with(@query)
+    end
+    it 'instance execute the query and save data' do
+      expect(@client).to receive(:query).with(@query)
+    end
+  end
 end

@@ -15,4 +15,8 @@ class User
     return false if @email.nil? or @email == ""
     true
   end
+  
+  def save 
+  
+  end
 end
