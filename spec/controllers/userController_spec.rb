@@ -35,6 +35,39 @@ describe UserController do
     controller = UserController.new
     response = controller.create(params)
     expect(response).to eq(expected_response)
+  end
+
+  it "create success failed cause validation" do 
+    expected_response = {
+      status: 400,
+      message: "bad request"
+    }
+    params = {
+      'username' => @user_data['username'],
+      'email' => @user_data['email']
+    }
+    allow(@user).to receive(:valid?).and_return(false)
+    allow(@user).to receive(:exist?).and_return(false)
+    
+    controller = UserController.new
+    response = controller.create(params)
+    expect(response).to eq(expected_response)
   end 
 
+  it "create success failed cause exist" do 
+    expected_response = {
+      status: 400,
+      message: "user with the same username is exist already"
+    }
+    params = {
+      'username' => @user_data['username'],
+      'email' => @user_data['email']
+    }
+    allow(@user).to receive(:valid?).and_return(true)
+    allow(@user).to receive(:exist?).and_return(true)
+    
+    controller = UserController.new
+    response = controller.create(params)
+    expect(response).to eq(expected_response)
+  end 
 end
