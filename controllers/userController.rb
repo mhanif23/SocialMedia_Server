@@ -55,6 +55,24 @@ class UserController
   end
 
   def update_bio(params)
-    
+    user = User::find_user(params["username"])
+    user.set_bio(params["bio"])
+    user.update()
+    if user == nil
+      return (
+        {
+          status: 404,
+          message: "resource not found"
+        }
+      )
+    end
+
+    return (
+      {
+        status: 200,
+        message: "success",
+        data: user.make_hash
+      }
+    )
   end
 end

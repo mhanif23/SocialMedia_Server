@@ -195,4 +195,20 @@ describe User do
       expect(user.make_hash).to eq(params)
     end
   end
+
+  describe "better bio" do
+    it "update bio" do
+      params = {
+          :id => 1,
+          :username => 'Rizal',
+          :email => 'Rizal@gmail.com',
+          :bio => 'Test Bioo'
+        }
+        new_bio = {
+          :bio => "new bio"
+        }
+      user = User.new(params)
+      expect(user.set_bio(new_bio)).to eq("new bio")
+    end
+  end
 end
