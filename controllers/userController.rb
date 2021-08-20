@@ -53,4 +53,8 @@ class UserController
       }
     )
   end
+
+  def update_bio(params)
+    
+  end
 end

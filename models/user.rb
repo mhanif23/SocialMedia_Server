@@ -69,4 +69,8 @@ class User
       :bio => @bio
     }
   end
+
+  def set_bio(params)
+    @bio = params[:bio]
+  end
 end

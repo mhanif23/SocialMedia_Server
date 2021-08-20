@@ -104,4 +104,26 @@ describe UserController do
     response = controller.find_user(@user_data)
     expect(response).to eq(expected_response)
   end
+
+  it "Update Bio" do 
+    user_object = {
+      id: @user_data["id"],
+      username: @user_data["username"],
+      email: @user_data["email"],
+      bio: @user_data["bio"]
+    }
+
+    expected_response = {
+      status: 200,  
+      message: "success",
+      data: user_object
+    }
+    allow(@user).to receive(:set_bio)
+    allow(@user).to receive(:update)
+    allow(@user).to receive(:make_hash).and_return(user_object)
+
+    controller = UserController.new
+    response = controller.update_bio(@user_data)
+    expect(response).to eq(expected_response)
+  end
 end
