@@ -56,6 +56,12 @@ describe User do
       )
         expect(@user_fail.valid?).to eq(false)
       end
+      it "should return true" do 
+        @user_fail = User.new(
+          email: "Rizal123@gmail.com"
+        )
+          expect(@user_fail.valid?).to eq(false)
+        end
     end
   end
 end
