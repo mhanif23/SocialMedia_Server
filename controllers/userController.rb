@@ -56,8 +56,6 @@ class UserController
 
   def update_bio(params)
     user = User::find_user(params["username"])
-    user.set_bio(params["bio"])
-    user.update()
     if user == nil
       return (
         {
@@ -66,7 +64,8 @@ class UserController
         }
       )
     end
-
+    user.set_bio(params["bio"])
+    user.update()
     return (
       {
         status: 200,
