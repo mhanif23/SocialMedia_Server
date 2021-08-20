@@ -10,4 +10,7 @@ class User
     @bio = params[:bio] ? params[:bio] : ""
   end
 
+  def valid?
+
+  end
 end
