@@ -23,11 +23,11 @@ describe UserController do
   it "create success user" do 
     expected_response = {
       status: 201,  
-      message: 'success',
+      message: "success",
     }
     params = {
-      'username' => @user_data['username'],
-      'email' => @user_data['email']
+      "username" => @user_data["username"],
+      "email" => @user_data["email"]
     }
     allow(@user).to receive(:valid?).and_return(true)
     allow(@user).to receive(:exist?).and_return(false)
@@ -43,8 +43,8 @@ describe UserController do
       message: "bad request"
     }
     params = {
-      'username' => @user_data['username'],
-      'email' => @user_data['email']
+      "username" => @user_data["username"],
+      "email" => @user_data["email"]
     }
     allow(@user).to receive(:valid?).and_return(false)
     allow(@user).to receive(:exist?).and_return(false)
@@ -60,8 +60,8 @@ describe UserController do
       message: "user with the same username is exist already"
     }
     params = {
-      'username' => @user_data['username'],
-      'email' => @user_data['email']
+      "username" => @user_data["username"],
+      "email" => @user_data["email"]
     }
     allow(@user).to receive(:valid?).and_return(true)
     allow(@user).to receive(:exist?).and_return(true)
@@ -70,4 +70,27 @@ describe UserController do
     response = controller.create(params)
     expect(response).to eq(expected_response)
   end 
+
+  it "find user by username found" do 
+    user_object = {
+      id: @user_data["id"],
+      username: @user_data["username"],
+      email: @user_data["email"],
+      bio: @user_data["bio"]
+    }
+
+    expected_response = {
+      status: 200,  
+      message: "success",
+      data: user_object
+    }
+
+    allow(@user).to receive(:make_hash).and_return(user_object)
+
+    params = @user_data["username"]
+
+    controller = UserController.new
+    response = controller.show_by_username(params)
+    expect(response).to eq(expected_response)
+  end
 end
