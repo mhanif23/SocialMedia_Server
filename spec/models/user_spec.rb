@@ -39,18 +39,22 @@ describe User do
   end
   describe "validation" do 
     before :each do
-      @user_data = {
-        username: "Rizal",
-        email: "rizal123@gmail.com"
-      }
       @user = User.new(
         username: "Rizal",
-        email: "rizal123@gmail.com"
+        email: "Rizal123@gmail.com"
       )
     end
     context "give valid argument" do 
       it "should return true" do
         expect(@user.valid?).to eq(true)
+      end
+    end
+    context "give fail argument" do 
+      it "should return true" do 
+      @user_fail = User.new(
+        username: "Rizal"
+      )
+        expect(@user_fail.valid?).to eq(false)
       end
     end
   end
