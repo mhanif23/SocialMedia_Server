@@ -91,4 +91,17 @@ describe UserController do
     response = controller.find_user(@user_data)
     expect(response).to eq(expected_response)
   end
+
+  it "find user by username not found" do 
+    expected_response = {
+      status: 404,
+      message: "resource not found"
+    }
+
+    allow(User).to receive(:find_user).and_return(nil)
+
+    controller = UserController.new
+    response = controller.find_user(@user_data)
+    expect(response).to eq(expected_response)
+  end
 end

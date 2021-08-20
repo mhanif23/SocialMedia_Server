@@ -37,16 +37,20 @@ class UserController
     user = User::find_user(params["username"])
     
     if user == nil
-      return ({
-        status: 404,
-        message: "resource not found"
-      })
+      return (
+        {
+          status: 404,
+          message: "resource not found"
+        }
+      )
     end
 
-    return ({
-      status: 200,
-      message: "success",
-      data: user.make_hash
-    })
+    return (
+      {
+        status: 200,
+        message: "success",
+        data: user.make_hash
+      }
+    )
   end
 end
