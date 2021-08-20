@@ -26,6 +26,15 @@ describe User do
       it 'should give empty bio' do 
         expect(@user.bio).to eq("")
       end
+      it 'should give bio when bio parameter has been inputted' do 
+        user_data = {
+          username: "Rizal",
+          email: "rizal123@gmail.com",
+          bio: "bio test"
+        }
+        user = User.new(user_data)
+        expect(user.bio).to eq(user_data[:bio])
+      end
     end
   end
 end
