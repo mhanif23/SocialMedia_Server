@@ -96,6 +96,10 @@ describe User do
       expect(@client).to receive(:query).with(@query)
       @user.save()
     end
+    it 'return  true' do
+      allow(@client).to receive(:query).with(@query)
+      expect(@user.save()).to be(true)
+    end
     describe "Check Exist Databse" do
       before :each do
         @user = User.new(
@@ -171,6 +175,11 @@ describe User do
       expect(@client).to receive(:query).with(@query)
       user = User.new(@user_data)
       user.update()
+    end
+    it "should return true" do
+      allow(@client).to receive(:query).with(@query)
+      user = User.new(@user_data)
+      expect(user.update()).to be(true)
     end
   end
 

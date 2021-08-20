@@ -24,6 +24,7 @@ class User
     client.query(
       "INSERT INTO Users (username, email, bio) VALUES ('#{@username}', '#{@email}', '#{@bio}')"
     )
+    true
   end
 
   def exist?
@@ -57,6 +58,7 @@ class User
     return false unless valid?
     client = create_db_client
     client.query("UPDATE Users set bio = '#{@bio}' where username = #{@username}")
+    true
   end
 
   def make_hash 
