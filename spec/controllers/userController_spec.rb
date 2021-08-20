@@ -1,1 +1,1 @@
-# require_relative '../../controllers/users.rb'
+# require_relative "../../controllers/userController"
