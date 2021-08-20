@@ -60,6 +60,11 @@ class User
   end
 
   def make_hash 
-   
+    {
+      :id => @id,
+      :username => @username,
+      :email => @email,
+      :bio => @bio
+    }
   end
 end
