@@ -7,6 +7,7 @@ class User
   def initialize(params)
     @username = params[:username]
     @email = params[:email]
+    @bio = params[:bio] ? params[:bio] : ""
   end
 
 end
