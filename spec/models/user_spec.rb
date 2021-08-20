@@ -13,18 +13,16 @@ describe User do
           email: "rizal123@gmail.com"
         }
         @user = User.new(
-          {
-            username: "Rizal",
-            email: "rizal123@gmail.com"
-          }
+          username: "Rizal",
+          email: "rizal123@gmail.com"
         )
       end
-    end
-    it 'should give username' do
-      expect(@user.username).to be(@user_data[:username])
-    end
-    it 'should give email' do
-      expect(@user.email).to be(@user_data[:email])
+      it 'should give username' do
+        expect(@user.username).to eq(@user_data[:username])
+      end
+      it 'should give email' do
+        expect(@user.email).to eq(@user_data[:email])
+      end
     end
   end
 end
