@@ -19,4 +19,22 @@ describe UserController do
 
     allow(User).to receive(:new).and_return(@user)
   end
+
+  it "create success user" do 
+    expected_response = {
+      status: 201,  
+      message: 'success',
+    }
+    params = {
+      'username' => @user_data['username'],
+      'email' => @user_data['email']
+    }
+    allow(@user).to receive(:valid?).and_return(true)
+    allow(@user).to receive(:exist?).and_return(false)
+    
+    controller = UserController.new
+    response = controller.create(params)
+    expect(response).to eq(expected_response)
+  end 
+
 end
