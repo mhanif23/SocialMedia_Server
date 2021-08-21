@@ -97,5 +97,17 @@ describe Posts do
      allow(@client).to receive(:query).with(query).and_return([])
      expect(Posts::find_post_by_id(@posts_data[0])).to eq([]) 
     end
+    it 'find post and give result' do
+      post = Posts.new(
+      id: @posts_data[0][:id], 
+      id_user: @posts_data[0][:id_user],
+      caption: @posts_data[0][:caption],
+      attachment: @posts_data[0][:attachment],
+      createdAt: @posts_data[0][:createdAt],
+    )
+      query = "select * from Posts where id = #{@posts_data[0][:id]}"
+     allow(@client).to receive(:query).with(query).and_return(@posts_data[0])
+     expect(Posts::find_post_by_id(@posts_data[0]).length).to eq(1) 
+    end
   end
 end
