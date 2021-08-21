@@ -5,7 +5,7 @@ class Hashtag
   attr_accessor :name, :hastag_used
   
   def initialize(params)
-  
+    @name = params[:name]
   end
 
 end
