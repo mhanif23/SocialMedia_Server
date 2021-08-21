@@ -49,6 +49,25 @@ describe Posts do
     )
     expect(post.valid?).to be(true)
     end
+    it 'return false cause iduser nil' do
+      post = Posts.new(
+      id: @posts_data[0][:id],
+      caption: @posts_data[0][:caption],
+      attachment: @posts_data[0][:attachment],
+      createdAt: @posts_data[0][:createdAt],
+    )
+    expect(post.valid?).to be(false)
+    end
+    it 'return false cause caption "" or nill' do
+      post = Posts.new(
+      id: @posts_data[0][:id], 
+      id_user: @posts_data[0][:id_user],
+      caption: "",
+      attachment: @posts_data[0][:attachment],
+      createdAt: @posts_data[0][:createdAt],
+    )
+    expect(post.valid?).to be(false)
+    end
   end
 
 end

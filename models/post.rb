@@ -12,7 +12,7 @@ class Posts
   end
 
   def valid?
-    
+    return false if @id_user.nil? or @caption.nil? || @caption == "" || @caption.length >1000
     true
   end
 end
