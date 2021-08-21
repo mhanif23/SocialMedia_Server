@@ -45,6 +45,22 @@ class Posts
     posts
   end
 
+  def self.post_by_id_json(params)
+    client = create_db_client
+    post_datas = client.query("select * from Posts where id = #{params[:id]}")
+    post_datas.each do |data|
+      post = {
+      id: data["id"], 
+      id_user: data["id_user"],
+      caption: data["caption"],
+      attachment: data["attachment"],
+      createdAt: data["createdAt"],
+      }
+      return post
+      break
+    end
+  end
+
   def save
     return false unless self.valid? 
 

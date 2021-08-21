@@ -51,4 +51,19 @@ class Hastags
       :hastag => @hastag
     }
   end
+
+  def self.post_contain_hastag(hastag)
+    id = find_id("##{hastag}")
+    client = create_db_client
+
+    datas = client.query("select id_post from Hastag_contracts inner join Posts on id_post = Posts.id where id_hastag = #{id}")
+    posts = []
+
+    datas.each do |data|
+      post_data = Posts::post_by_id_json(id: data["id_post"])
+      post = Posts.new(id_user: post_data[:id_user], caption: post_data[:caption], attachment: post_data[:attachment], id: post_data[:id], createdAt: post_data[:createdAt])
+        posts << post.make_hash
+    end
+    posts
+  end
 end

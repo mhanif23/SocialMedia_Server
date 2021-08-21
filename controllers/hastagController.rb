@@ -12,4 +12,15 @@ class HastagController
       }
     )
   end
+
+  def find_post_by_id(params)
+    posts = Hastags::post_contain_hastag(params[:hastag])
+    return (
+      {
+        status: 200,
+        message: "success",
+        data: posts
+      }
+    )
+  end
 end

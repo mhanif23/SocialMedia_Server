@@ -17,6 +17,13 @@ get '/trending_hastags' do
   response.to_json
 end
 
+get '/hastag/:hastag' do
+  controller = HastagController.new
+  response = controller.find_post_by_id(params)
+  status response[:status]
+  response.to_json
+end
+
 get '/user/:username' do
   controller = UserController.new
   response = controller.find_user(params)
