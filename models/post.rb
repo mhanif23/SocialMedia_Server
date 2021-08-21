@@ -25,5 +25,9 @@ class Posts
       :createdAt => @createdAt
     }
   end
+
+  def find_post_by_id(params)
+    
+  end
 end
   
