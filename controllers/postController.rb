@@ -6,7 +6,6 @@ class PostController
     time = Time.new  
     file = params[:file][:tempfile] 
     tempfile = params[:file]
-    puts tempfile[:filename]
     attachmentname = "public/uploads/"+"#{params["id_user"]}"+"#{time.to_s}"+"#{tempfile[:filename]}"
     post = Posts.new(id_user: params["id_user"], caption: params["caption"], attachment: attachmentname)
 
