@@ -95,7 +95,7 @@ describe Posts do
     it 'find post and give empty result' do
       query = "select * from Posts where id = #{@posts_data[0][:id]}"
      allow(@client).to receive(:query).with(query).and_return([])
-     expect(Post::find_post_by_id(@posts_data[0])).to eq([]) 
+     expect(Posts::find_post_by_id(@posts_data[0])).to eq([]) 
     end
   end
 end
