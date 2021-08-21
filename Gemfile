@@ -18,3 +18,5 @@ gem 'mysql2', '~> 0.5.3'
 gem 'sinatra-contrib'
 
 gem 'json', '~> 2.5.1'
+
+gem 'sinatra-cross_origin'
