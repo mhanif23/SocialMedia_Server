@@ -30,4 +30,12 @@ describe Hastags do
       expect(Hastags::find_trending().length).to eq(data.length)
     end
   end
+
+  describe 'find id' do
+    it 'should return id by hastag' do
+      data = {id: 1, hastag: "mantap"}
+      query = "select * from Hastags where hastag = '#{data[:hastag]}'"
+      expect(@client).to receive(:query).with(query).and_return(data[:id])
+    end
+  end
 end
