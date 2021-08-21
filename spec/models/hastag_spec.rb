@@ -50,4 +50,22 @@ describe Hastags do
     allow(@client).to receive(:query).with(query)
     expect(hastag.save).to eq(true)
   end
+
+  it 'exist' do
+    hastag = Hastags.new(
+        hastag: "#luar"
+      )
+    query = "SELECT COUNT(*) as count FROM Hastags WHERE hastag ='#luar'"
+    allow(@client).to receive(:query).with(query).and_return([count: 1])
+    expect(hastag.exist?).to eq(true)
+  end
+  
+  it 'not exist' do
+    hastag = Hastags.new(
+        hastag: "#luar"
+      )
+    query = "SELECT COUNT(*) as count FROM Hastags WHERE hastag ='#luar'"
+    allow(@client).to receive(:query).with(query).and_return({count: 0})
+    expect(hastag.exist?).to eq(false)
+  end
 end

@@ -111,6 +111,26 @@ describe Posts do
     end
   end
 
+  describe 'find post by id to json' do
+    it 'find post and give empty result' do
+      query = "select * from Posts where id = #{@posts_data[0][:id]}"
+     allow(@client).to receive(:query).with(query).and_return([])
+     expect(Posts::find_post_by_id(@posts_data[0])).to eq([]) 
+    end
+    it 'find post and give result' do
+      post = {
+        id: 1, 
+        id_user: "teset",
+        caption: "test",
+        attachment: "test",
+        createdAt: "Test",
+      }
+      query = "select * from Posts where id = #{1}"
+     allow(@client).to receive(:query).with(query).and_return(post)
+     expect(Posts::post_by_id_json(id: 1)).to eq(post) 
+    end
+  end
+
   it "should return list hastag" do
     params = {
       :id => 1,

@@ -1,13 +1,19 @@
 require 'sinatra'
 require 'sinatra/json'
+require 'sinatra/cross_origin'
 require 'json'
 require_relative './controllers/userController'
 require_relative './controllers/postController'
 require_relative './controllers/commentController'
 require_relative './controllers/hastagController'
 
+configure do
+  enable :cross_origin
+end
+
 before do
   content_type :json
+  response.headers['Access-Control-Allow-Origin'] = '*'
 end
 
 get '/trending_hastags' do
@@ -59,4 +65,10 @@ post '/comment' do
   response = controller.create(params)
   status response[:status]
   response.to_json
+end
+
+options "*" do
+  response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS"
+  response.headers["Access-Control-Allow-Origin"] = "*"
+  200
 end
