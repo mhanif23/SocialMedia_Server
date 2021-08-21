@@ -1,4 +1,4 @@
-![new](https://user-images.githubusercontent.com/43975267/130327768-bc9bc66b-b19a-44b8-bc12-d306ee7f61ef.png)
+
 # SocialMedia_Server
 Final Project of Intermediate-class Generasi Gigih Batch 1.
 Create Social Media API
@@ -69,3 +69,4 @@ https://web.postman.co/workspace/My-Workspace~e525abbc-8062-4ac4-84a9-9841b92e20
 http://34.84.166.206:4567
 
 ERD
+![new](https://user-images.githubusercontent.com/43975267/130327768-bc9bc66b-b19a-44b8-bc12-d306ee7f61ef.png)
