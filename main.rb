@@ -1,10 +1,33 @@
 require 'sinatra'
 require 'sinatra/json'
+require 'sinatra/cross_origin'
 require 'json'
 require_relative './controllers/userController'
+require_relative './controllers/postController'
+require_relative './controllers/commentController'
+require_relative './controllers/hastagController'
+
+configure do
+  enable :cross_origin
+end
 
 before do
   content_type :json
+  response.headers['Access-Control-Allow-Origin'] = '*'
+end
+
+get '/trending_hastags' do
+  controller = HastagController.new
+  response = controller.find_trending()
+  status response[:status]
+  response.to_json
+end
+
+get '/hastag/:hastag' do
+  controller = HastagController.new
+  response = controller.find_post_by_id(params)
+  status response[:status]
+  response.to_json
 end
 
 get '/user/:username' do
@@ -29,39 +52,23 @@ post '/user/bio' do
   status response[:status]
   response.to_json
 end
-# get '/users' do
-#   status 200
-#   json(
-#     {
-#       status: 200,
-#       message: 'Success!',
-#       data: {}
-#     }
-#   )
-# end
 
-# post '/test' do
-#   request_payload = JSON.parse request.body.read
-#   puts request_payload
-#   status 200
-#   json(
-#     {
-#       status: 200,
-#       message: 'Success!',
-#       data: request_payload
-#     }
-#   )
-# end
+post '/post' do
+  controller = PostController.new
+  response = controller.create(params)
+  status response[:status]
+  response.to_json
+end
 
-# post '/file' do
-#   tmpfile = params[:file]
-#   puts tmpfile
-#   status 200
-#   json(
-#     {
-#       status: 200,
-#       message: 'Success!',
-#       data: tmpfile
-#     }
-#   )
-# end
+post '/comment' do
+  controller = CommentController.new
+  response = controller.create(params)
+  status response[:status]
+  response.to_json
+end
+
+options "*" do
+  response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS"
+  response.headers["Access-Control-Allow-Origin"] = "*"
+  200
+end
