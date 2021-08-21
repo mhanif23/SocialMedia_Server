@@ -7,6 +7,13 @@ class Hastags
     @hastag = params[:hastag]
   end
 
+  def save
+    if Hastags::find_id(@hastag) == nil
+   
+    end
+    false
+  end
+
   def self.find_trending()
     client = create_db_client
 

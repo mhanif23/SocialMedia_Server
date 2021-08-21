@@ -41,4 +41,11 @@ describe Hastags do
     end
   end
 
+  it 'save hastag' do
+    hastag = Hastags.new(
+        hastag: "cek"
+      )
+    allow(Hastags).to receive(:find_id).and_return(1)
+    expect(hastag.save).to eq(false)
+  end
 end
