@@ -41,11 +41,20 @@ describe Hastags do
     end
   end
 
-  it 'save hastag' do
+  it 'not to save hastag' do
     hastag = Hastags.new(
         hastag: "cek"
       )
     allow(Hastags).to receive(:find_id).and_return(1)
     expect(hastag.save).to eq(false)
+  end
+  it 'save hastag' do
+    hastag = Hastags.new(
+        hastag: "cek"
+      )
+    allow(Hastags).to receive(:find_id).and_return(nil)
+    query = "insert into Hastags (hastag) values ('cek')"
+    allow(@client).to receive(:query).with(query)
+    expect(hastag.save).to eq(true)
   end
 end

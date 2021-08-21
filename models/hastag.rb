@@ -9,7 +9,9 @@ class Hastags
 
   def save
     if Hastags::find_id(@hastag) == nil
-   
+      client = create_db_client
+      client.query("insert into Hastags (hastag) values ('#{@hastag}')")  
+      return true
     end
     false
   end
