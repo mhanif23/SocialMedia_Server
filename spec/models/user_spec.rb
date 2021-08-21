@@ -165,7 +165,7 @@ describe User do
             email: "rizal123@gmail.com",
             bio: "This is bio"
           }
-      @query = "UPDATE Users set bio = '#{@user_data[:bio]}' where username = #{@user_data[:username]}"
+      @query = "UPDATE Users set bio = '#{@user_data[:bio]}' where username = '#{@user_data[:username]}'"
       @client = double
       allow(Mysql2::Client).to receive(:new).and_return(@client)
       allow(@client).to receive(:query).with(@query)
@@ -196,7 +196,7 @@ describe User do
     end
   end
 
-  describe "better bio" do
+  describe "setter bio" do
     it "update bio" do
       params = {
           :id => 1,
@@ -204,9 +204,7 @@ describe User do
           :email => 'Rizal@gmail.com',
           :bio => 'Test Bioo'
         }
-        new_bio = {
-          :bio => "new bio"
-        }
+        new_bio = "new bio"
       user = User.new(params)
       expect(user.set_bio(new_bio)).to eq("new bio")
     end

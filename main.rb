@@ -22,7 +22,13 @@ post '/user/' do
   response.to_json
 end
 
-
+post '/user/bio' do
+  request_payload = JSON.parse request.body.read
+  controller = UserController.new
+  response = controller.update_bio(request_payload)
+  status response[:status]
+  response.to_json
+end
 # get '/users' do
 #   status 200
 #   json(

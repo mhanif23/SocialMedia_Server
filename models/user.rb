@@ -57,7 +57,7 @@ class User
   def update
     return false unless valid?
     client = create_db_client
-    client.query("UPDATE Users set bio = '#{@bio}' where username = #{@username}")
+    client.query("UPDATE Users set bio = '#{@bio}' where username = '#{@username}'")
     true
   end
 
@@ -71,6 +71,6 @@ class User
   end
 
   def set_bio(params)
-    @bio = params[:bio]
+    @bio = "#{params}"
   end
 end
