@@ -1,4 +1,5 @@
 require_relative "../connector/db_connector"
+require_relative "./hastag"
 class Posts
   attr_accessor :caption, :attachment
   attr_reader :id, :id_user,:createdAt 
@@ -48,24 +49,23 @@ class Posts
     return false unless self.valid? 
 
     client = create_db_client
-    times = client.query("SELECT now()")
     client.query(
-      "INSERT INTO Users (id_user,caption,attachment,createdAt) VALUES (#{@id_user},'#{@caption}', '#{@attachment}','#{createdAt}')"
+      "INSERT INTO Posts (id_user,caption,attachment) VALUES (#{@id_user},'#{@caption}', '#{@attachment}')"
     )
     id_post = client.last_id
-    hastags = Posts::find_hastag_from_caption(@caption)
+    hastags = find_hastag_from_caption(@caption)
     hastags.each do |hastag|
       hastag_obj = Hastags.new(hastag: hastag)
-      hastag_obj.save
+      hastag_obj.save if !hastag_obj.exist?
       id = Hastags::find_id(hastag)
       client.query(
-      "INSERT INTO Hastag_contracts (id_post, id_hastag, createdAt) VALUES (#{id_post}, #{id},'#{createdAt}')"
-    ) 
+      "INSERT INTO Hastag_contracts (id_post, id_hastag) VALUES (#{id_post}, #{id})"
+      ) 
     end
     true
   end
   
-  def self.find_hastag_from_caption(caption)
+  def find_hastag_from_caption(caption)
     caption.downcase.scan(/#[a-zA-Z]+/).uniq
   end
 

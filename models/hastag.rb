@@ -8,11 +8,17 @@ class Hastags
   end
 
   def save
-    if Hastags::find_id(@hastag) == nil
       client = create_db_client
       client.query("insert into Hastags (hastag) values ('#{@hastag}')")  
-      return true
-    end
+      true
+  end
+
+  def exist?
+    client = create_db_client
+    rows = client.query(
+      "SELECT COUNT(*) as count FROM Hastags WHERE hastag ='#{@hastag}'"
+    )
+    return true if rows.first()["count"] > 0
     false
   end
 
@@ -34,10 +40,10 @@ class Hastags
     hastags = client.query("select * from Hastags where hastag = '#{hastag}'")
     id = nil
     hastags.each do |data|
-      id = data[:id]
+      id = data["id"]
       break
     end
-    id
+    return id
   end
 
 end
