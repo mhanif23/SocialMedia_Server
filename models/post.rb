@@ -7,8 +7,8 @@ class Posts
     @id = params[:id]? params[:id] : ""
     @id_user = params[:id_user]
     @caption = params[:caption]
-    @attachment = params[:attachment]
-    @createdAt = params[:createdAt]
+    @attachment = params[:attachment] ? params[:attachment] : ""
+    @createdAt = params[:createdAt] ? params[:createdAt] : ""
   end
 
   def valid?
@@ -43,5 +43,26 @@ class Posts
     end
     posts
   end
+
+  def save
+    # return false unless self.valid? 
+
+    # client = create_db_client
+    # times = client.query("SELECT now()")
+    # times do |time|
+    #   createdAt = time["now()"]
+    #   break
+    # end
+    # client.query(
+    #   "INSERT INTO Users (id_user, caption, attachment,createdAt) VALUES ('#{@id_user}', '#{@caption}', '#{@attachment}','#{createdAt}')"
+    # )
+
+    # true
+  end
+  
+  def find_hastag_from_caption
+  end
+
+  
 end
   

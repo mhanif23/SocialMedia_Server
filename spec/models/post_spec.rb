@@ -110,4 +110,16 @@ describe Posts do
      expect(Posts::find_post_by_id(@posts_data[0]).length).to eq(1) 
     end
   end
+
+  it "should return list hastag" do
+    params = {
+      :id => 1,
+      :user_id => 3,
+      :caption => "Test #mantap #luarbiasa",
+      :attachment => '/public/upload/test.jpg',
+      :createdAt => '2021-08-20 11:48:38'
+    }
+    post = Post.new(params)
+    expect(post.find_hastag_from_caption).to eq(["#mantap", "#luarbiasa"])
+  end
 end
