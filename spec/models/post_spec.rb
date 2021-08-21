@@ -79,5 +79,16 @@ describe Posts do
     expect(post.valid?).to be(false)
     end
   end
-
+  describe 'hash' do
+    it 'make hash' do 
+      post = Posts.new(
+      id: @posts_data[0][:id], 
+      id_user: @posts_data[0][:id_user],
+      caption: @posts_data[0][:caption],
+      attachment: @posts_data[0][:attachment],
+      createdAt: @posts_data[0][:createdAt],
+    )
+    expect(post.make_hash()).to eq(@posts_data[0])
+    end
+  end
 end

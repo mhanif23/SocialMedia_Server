@@ -4,7 +4,7 @@ class Posts
   attr_reader :id, :id_user,:createdAt 
 
   def initialize(params)
-    @id = params[:id]
+    @id = params[:id]? params[:id] : ""
     @id_user = params[:id_user]
     @caption = params[:caption]
     @attachment = params[:attachment]
@@ -14,6 +14,16 @@ class Posts
   def valid?
     return false if @id_user.nil? or @caption.nil? || @caption == "" || @caption.length >1000
     true
+  end
+
+  def make_hash()
+    {
+      :id => @id,
+      :id_user => @id_user,
+      :caption => @caption,
+      :attachment => @attachment,
+      :createdAt => @createdAt
+    }
   end
 end
   
