@@ -13,6 +13,7 @@ class Posts
 
   def valid?
     
+    true
   end
 end
   
