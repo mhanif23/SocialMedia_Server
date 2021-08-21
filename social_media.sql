@@ -40,7 +40,7 @@ use social_media;
   primary key (id)
   );
 
-  create table Post_hastags (
+  create table Hastag_contracts (
   id int NOT NULL AUTO_INCREMENT,
   id_post int default NULL,
   id_hastag int NOT NULL,

@@ -8,4 +8,7 @@ class Hashtag
     @name = params[:name]
   end
 
+  def self.find_trending
+
+  end
 end
