@@ -139,7 +139,7 @@ describe User do
             email: "rizal123@gmail.com",
             bio: "This is bio"
           }
-      @query = "SELECT * FROM Users WHERE username = #{@user_data[:username]}"
+      @query = "SELECT * FROM Users WHERE username = '#{@user_data[:username]}'"
       response = [{
           'id' => @user_data[:id],
           'username' => @user_data[:username],

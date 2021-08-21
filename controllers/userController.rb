@@ -1,5 +1,5 @@
-require '../models/user'
 require "sinatra"
+require_relative '../models/user'
 
 class UserController
   def create(params)
@@ -35,7 +35,6 @@ class UserController
 
   def find_user(params)
     user = User::find_user(params["username"])
-    
     if user == nil
       return (
         {

@@ -38,7 +38,7 @@ class User
 
   def self.find_user(username)
     client = create_db_client
-    rows = client.query("SELECT * FROM Users WHERE username = #{username}")
+    rows = client.query("SELECT * FROM Users WHERE username = '#{username}'")
     user = nil
     rows.each do |row|
       user = User.new(
