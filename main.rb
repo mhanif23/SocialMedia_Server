@@ -14,6 +14,13 @@ get '/user/:username' do
   response.to_json
 end
 
+post '/user/' do
+  request_payload = JSON.parse request.body.read
+  controller = UserController.new
+  response = controller.create(request_payload)
+  status response[:status]
+  response.to_json
+end
 
 
 # get '/users' do
