@@ -119,7 +119,34 @@ describe Posts do
       :attachment => '/public/upload/test.jpg',
       :createdAt => '2021-08-20 11:48:38'
     }
-    post = Posts.new(params)
-    expect(post.find_hastag_from_caption).to eq(["#mantap", "#luarbiasa"])
+    expect(Posts::find_hastag_from_caption("Test #mantap #luarbiasa")).to eq(["#mantap", "#luarbiasa"])
+  end
+
+  it 'save post' do
+    param ={
+      id: 1, 
+      id_user: 1,
+      caption: 'test #test #test2',
+      attachment: 'test',
+      createdAt: '2021-08-20 11:48:38'
+    }
+    query_time = "SELECT now()"
+    allow(@client).to receive(:query).with(query_time).and_return({:createdAt => '2021-08-20 11:48:38'})
+    query ="INSERT INTO Users (id_user,caption,attachment,createdAt) VALUES (#{param[:id]},'#{param[:caption]}', '#{param[:attachment]}','#{param[:createdAt]}')"
+    allow(@client).to receive(:query).with(query)
+    allow(@client).to receive(:last_id).and_return(1)
+    hastag = double
+    allow(Posts).to receive(:find_hastag_from_caption).and_return(["#test", "#test2"])
+    allow(Hastags).to receive(:find_id).and_return(1)
+    query2= "INSERT INTO Hastag_contracts (id_post, id_hastag, createdAt) VALUES (1, 1,'#{param[:createdAt]}')"
+    allow(@client).to receive(:query).with(query2)
+    post = Posts.new(
+      id: 1, 
+      id_user: 1,
+      caption: 'test #test #test2',
+      attachment: 'test',
+      createdAt: '2021-08-20 11:48:38'
+    )
+    expect(post.save).to eq(true)
   end
 end

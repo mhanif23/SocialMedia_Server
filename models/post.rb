@@ -45,23 +45,28 @@ class Posts
   end
 
   def save
-    # return false unless self.valid? 
+    return false unless self.valid? 
 
-    # client = create_db_client
-    # times = client.query("SELECT now()")
-    # times do |time|
-    #   createdAt = time["now()"]
-    #   break
-    # end
-    # client.query(
-    #   "INSERT INTO Users (id_user, caption, attachment,createdAt) VALUES ('#{@id_user}', '#{@caption}', '#{@attachment}','#{createdAt}')"
-    # )
-
-    # true
+    client = create_db_client
+    times = client.query("SELECT now()")
+    client.query(
+      "INSERT INTO Users (id_user,caption,attachment,createdAt) VALUES (#{@id_user},'#{@caption}', '#{@attachment}','#{createdAt}')"
+    )
+    id_post = client.last_id
+    hastags = Posts::find_hastag_from_caption(@caption)
+    hastags.each do |hastag|
+      hastag_obj = Hastags.new(hastag: hastag)
+      hastag_obj.save
+      id = Hastags::find_id(hastag)
+      client.query(
+      "INSERT INTO Hastag_contracts (id_post, id_hastag, createdAt) VALUES (#{id_post}, #{id},'#{createdAt}')"
+    ) 
+    end
+    true
   end
   
-  def find_hastag_from_caption
-    @caption.downcase.scan(/#[a-zA-Z]+/).uniq
+  def self.find_hastag_from_caption(caption)
+    caption.downcase.scan(/#[a-zA-Z]+/).uniq
   end
 
   
