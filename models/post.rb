@@ -61,6 +61,7 @@ class Posts
   end
   
   def find_hastag_from_caption
+    @caption.downcase.scan(/#[a-zA-Z]+/).uniq
   end
 
   

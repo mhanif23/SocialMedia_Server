@@ -119,7 +119,7 @@ describe Posts do
       :attachment => '/public/upload/test.jpg',
       :createdAt => '2021-08-20 11:48:38'
     }
-    post = Post.new(params)
+    post = Posts.new(params)
     expect(post.find_hastag_from_caption).to eq(["#mantap", "#luarbiasa"])
   end
 end
