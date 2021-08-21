@@ -21,7 +21,7 @@ describe Posts do
     allow(Mysql2::Client).to receive(:new).and_return(@client)
   end
 
-  it 'should fullfill attributes' do
+  it 'should fullfill attributes initialize' do
     post_data = 
     post = Posts.new(
       id: @posts_data[0][:id], 
@@ -37,4 +37,18 @@ describe Posts do
     expect(post.attachment).to eq(@posts_data[0][:attachment])
     expect(post.createdAt).to eq(@posts_data[0][:createdAt])
   end
+
+  context 'validation' do
+    it 'return true' do
+      post = Posts.new(
+      id: @posts_data[0][:id], 
+      id_user: @posts_data[0][:id_user],
+      caption: @posts_data[0][:caption],
+      attachment: @posts_data[0][:attachment],
+      createdAt: @posts_data[0][:createdAt],
+    )
+    expect(post.valid?).to be(true)
+    end
+  end
+
 end

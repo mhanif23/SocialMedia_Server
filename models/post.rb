@@ -10,5 +10,9 @@ class Posts
     @attachment = params[:attachment]
     @createdAt = params[:createdAt]
   end
+
+  def valid?
+    
+  end
 end
   
