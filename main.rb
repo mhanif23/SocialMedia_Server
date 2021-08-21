@@ -4,9 +4,17 @@ require 'json'
 require_relative './controllers/userController'
 require_relative './controllers/postController'
 require_relative './controllers/commentController'
+require_relative './controllers/hastagController'
 
 before do
   content_type :json
+end
+
+get '/trending_hastags' do
+  controller = HastagController.new
+  response = controller.find_trending()
+  status response[:status]
+  response.to_json
 end
 
 get '/user/:username' do

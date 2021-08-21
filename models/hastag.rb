@@ -30,7 +30,7 @@ class Hastags
 
     datas.each do |data|
       hastag = Hastags.new(hastag: data['hastag'])
-      hastags << hastag
+      hastags << hastag.make_hash
     end
     hastags
   end
@@ -46,4 +46,9 @@ class Hastags
     return id
   end
 
+  def make_hash 
+    {
+      :hastag => @hastag
+    }
+  end
 end
