@@ -5,7 +5,7 @@ Create Social Media API
 
 # Requirment
 1. Save username, email, and bio. I also put how to update bio there
-2. Post some caption with attachment with maksimum caption limit is 1000 with hashtags.
+2. Post some caption/comment with attachment with maksimum caption limit is 1000 with hashtags.
 3. See all post contain hashtag [User can only filter by one hastag at time]
 4. See all trending hashtag in last 24h
 5. Comment to post with hashtag
