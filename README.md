@@ -13,11 +13,11 @@ Create Social Media API
 #Project Structure
 
 |_ERD
-| |_new.png
-| |_social_media.drawio
-|_connector  
-| |_db_connector.rb
-|_controllers
+| |_new.png 
+| |_social_media.drawio 
+|_connector   
+| |_db_connector.rb 
+|_controllers 
 | |_commentController.rb
 | |_hastagController.rb
 | |_postController.rb
@@ -41,7 +41,7 @@ Create Social Media API
 |_social_media.sql
 
 
-##Instructions
+#Instructions
 #Prerequisite
 
 1. install Ruby, for developing this app I use ruby 2.7.0
@@ -64,5 +64,5 @@ export DB_PASSWORD=<YOUR_PASSWORD>
 https://www.postman.com/collections/578df36252fc12490f9f
 https://web.postman.co/workspace/My-Workspace~e525abbc-8062-4ac4-84a9-9841b92e2040/documentation/6168502-f1cca4b1-2871-440e-9388-4b03b3c803e7
 
-My GCP
+#My GCP
 http://34.84.166.206:4567
