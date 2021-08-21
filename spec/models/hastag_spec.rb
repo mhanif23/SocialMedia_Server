@@ -33,9 +33,12 @@ describe Hastags do
 
   describe 'find id' do
     it 'should return id by hastag' do
-      data = {id: 1, hastag: "mantap"}
-      query = "select * from Hastags where hastag = '#{data[:hastag]}'"
-      expect(@client).to receive(:query).with(query).and_return(data[:id])
+      data = [{id: 1, hastag: "mantap"}]
+      query = "select * from Hastags where hastag = '#{data[0][:hastag]}'"
+      expect(@client).to receive(:query).with(query).and_return(data)
+      respon = Hastags::find_id("mantap")
+      expect(respon).to eq(1)
     end
   end
+
 end
