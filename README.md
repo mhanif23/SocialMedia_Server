@@ -12,37 +12,37 @@ Create Social Media API
 
 #Project Structure
 
-|_ERD
-| |_new.png 
-| |_social_media.drawio 
-|_connector   
-| |_db_connector.rb 
-|_controllers 
-| |_commentController.rb
-| |_hastagController.rb
-| |_postController.rb
-| |_userController.rb
-|_models
-| |_comment.rb
-| |_hastag.rb
-| |_post.rb
-| |_user.rb
-|_spec
-| |_controllers
-| |_models
-| |_spec_helper.rb
-| |_test_helper.rb
-|_.gitignore
-|_.rspec
-|_Gemfile       
-|_Gemfile.lock       
-|_README.md
-|_main.rb  
-|_social_media.sql
+|_ ERD
+| |_ new.png 
+| |_ social_media.drawio 
+|_ connector   
+| |_ db_connector.rb 
+|_ controllers 
+| |_ commentController.rb
+| |_ hastagController.rb
+| |_ postController.rb
+| |_ userController.rb
+|_ models
+| |_ comment.rb
+| |_ hastag.rb
+| |_ post.rb
+| |_ user.rb
+|_ spec
+| |_ controllers
+| |_ models
+| |_ spec_helper.rb
+| |_ test_helper.rb
+|_ .gitignore
+|_ .rspec
+|_ Gemfile       
+|_ Gemfile.lock       
+|_ README.md
+|_ main.rb  
+|_ social_media.sql
 
 
-#Instructions
-#Prerequisite
+# Instructions
+# Prerequisite
 
 1. install Ruby, for developing this app I use ruby 2.7.0
 2. install bundler
@@ -60,9 +60,9 @@ export DB_PASSWORD=<YOUR_PASSWORD>
 7. rub main.rb 
 8. for run test using rspec
 
-#POSTMAN API
+# POSTMAN API
 https://www.postman.com/collections/578df36252fc12490f9f
 https://web.postman.co/workspace/My-Workspace~e525abbc-8062-4ac4-84a9-9841b92e2040/documentation/6168502-f1cca4b1-2871-440e-9388-4b03b3c803e7
 
-#My GCP
+# My GCP
 http://34.84.166.206:4567
