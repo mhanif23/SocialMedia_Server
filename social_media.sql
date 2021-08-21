@@ -40,26 +40,17 @@ use social_media;
   primary key (id)
   );
 
-  create table Post_hastags (
+  create table Hastag_contracts (
   id int NOT NULL AUTO_INCREMENT,
-  id_post int NOT NULL,
+  id_post int default NULL,
   id_hastag int NOT NULL,
+  id_comment int default NULL,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   KEY `id_post` (`id_post`),
   KEY `id_hastag` (`id_hastag`),
+  KEY `id_comment` (`id_comment`),
   CONSTRAINT `id_post_ibfk_2` FOREIGN KEY (`id_post`) REFERENCES `Posts` (`id`),
   CONSTRAINT `id_hastag_ibfk_1` FOREIGN KEY (`id_hastag`) REFERENCES `Hastags` (`id`),
-  primary key (id)
-  );
-
-  create table Comment_hastags (
-  id int NOT NULL AUTO_INCREMENT,
-  id_comment int NOT NULL,
-  id_hastag int NOT NULL,
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  KEY `id_comment` (`id_comment`),
-  KEY `id_hastag` (`id_hastag`),
   CONSTRAINT `id_comment_ibfk_1` FOREIGN KEY (`id_comment`) REFERENCES `Comments` (`id`),
-  CONSTRAINT `id_hastag_ibfk_2` FOREIGN KEY (`id_hastag`) REFERENCES `Hastags` (`id`),
   primary key (id)
   );
