@@ -61,6 +61,7 @@ GEM
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-cross_origin (0.4.0)
     tilt (2.0.10)
     unicode-display_width (2.0.0)
 
@@ -75,6 +76,7 @@ DEPENDENCIES
   simplecov (~> 0.21.2)
   sinatra (~> 2.1.0)
   sinatra-contrib
+  sinatra-cross_origin
 
 RUBY VERSION
    ruby 2.7.0p0
